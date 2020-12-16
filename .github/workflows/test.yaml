@@ -58,5 +58,5 @@ jobs:
         if: ${{ always()}}
         uses: actions/upload-artifact@v2
         with:
-          name: functional-tests
-          path: ./functional-tests
+          name: functional-test_outputs
+          path: ./functional-test_outputs
