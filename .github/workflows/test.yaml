@@ -28,6 +28,14 @@ jobs:
         shell: bash
         run: make tests_run
 
-      - name: Run test
+      - name: Get coverage
+        if: ${{ always()}}
         shell: bash
-        run: make coverage
+        run: make coverage > coverage_outputs
+      
+      - name: send coverage in artefact
+        if: ${{ always()}}
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage_outputs
+          path: ./coverage_outputs
