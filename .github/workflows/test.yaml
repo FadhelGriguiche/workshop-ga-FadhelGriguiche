@@ -5,6 +5,7 @@ on:
     branches:
       - dev
       - master
+
 jobs:
   hello_world:
     name: My hello world workflow
@@ -16,7 +17,7 @@ jobs:
         run: echo Welcome to the Github Actions workshop !
 
   unit_test:
-    name: My unit test
+    name: My unit tests
     runs-on: ubuntu-20.04
     container: docker://epitechcontent/epitest-docker
     
@@ -39,3 +40,23 @@ jobs:
         with:
           name: coverage_outputs
           path: ./coverage_outputs
+
+  function_tests:
+    name: My func Tests
+    runs-on: ubuntu-20.04
+    container: docker://epitechcontent/epitest-docker
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Run func_test
+        shell: bash
+        run: make && ./functional-test.sh > functional-test_outputs
+
+      - name: send coverage in artefact
+        if: ${{ always()}}
+        uses: actions/upload-artifact@v2
+        with:
+          name: functional-tests
+          path: ./functional-tests
