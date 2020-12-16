@@ -14,7 +14,7 @@ jobs:
       - name: Say hello world
         shell: bash
         run: echo Welcome to the Github Actions workshop !
-        
+
   unit_test:
     name: My unit test
     runs-on: ubuntu-20.04
@@ -26,7 +26,7 @@ jobs:
 
       - name: Run test
         shell: bash
-        run: make test_run
+        run: make tests_run
 
       - name: Run test
         shell: bash
